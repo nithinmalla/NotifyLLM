@@ -29,7 +29,15 @@ function init() {
 
 // Data Management
 function loadNotes() {
-    const saved = localStorage.getItem('progress_dashboard_notes');
+    let saved = localStorage.getItem('notify_app_notes');
+    if (!saved) {
+        // Upgrading legacy storage key
+        saved = localStorage.getItem('progress_dashboard_notes');
+        if (saved) {
+            localStorage.setItem('notify_app_notes', saved);
+        }
+    }
+
     if (saved) {
         try {
             notes = JSON.parse(saved);
@@ -46,7 +54,7 @@ function loadNotes() {
 }
 
 function saveNotes() {
-    localStorage.setItem('progress_dashboard_notes', JSON.stringify(notes));
+    localStorage.setItem('notify_app_notes', JSON.stringify(notes));
 }
 
 function createNote() {
@@ -109,7 +117,7 @@ function updateNote(id, field, value, noteElement, isManualSave = false) {
 }
 
 function deleteNote(id, element) {
-    if(confirm('Are you sure you want to delete this progress note?')) {
+    if(confirm('Are you sure you want to delete this note?')) {
         element.classList.add('deleting');
         
         setTimeout(() => {
@@ -196,7 +204,7 @@ function renderNotes() {
         if (searchTerm) {
             DOM.notesContainer.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem;">No notes match your search.</div>`;
         } else {
-            DOM.notesContainer.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem;">Click "New Progress Note" to get started!</div>`;
+            DOM.notesContainer.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem;">Click "New Note" to get started!</div>`;
         }
         return;
     }
@@ -344,7 +352,7 @@ function exportJSON() {
     
     const a = document.createElement('a');
     a.href = url;
-    a.download = `progress_notes_export_${new Date().toISOString().slice(0,10)}.json`;
+    a.download = `notify_export_${new Date().toISOString().slice(0,10)}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

@@ -10,7 +10,7 @@ const DOM = {
     prevBtn: document.getElementById('prev-btn'),
     nextBtn: document.getElementById('next-btn'),
     mobileMenuToggle: document.querySelector('.mobile-menu-toggle'),
-    navPillsContainer: document.querySelector('.nav-pills')
+    navLinksContainer: document.querySelector('.nav-links')
 };
 
 let notes = [];
@@ -415,6 +415,13 @@ function setupEventListeners() {
         DOM.nextBtn.addEventListener('click', () => {
             const cardWidth = 380 + 48;
             DOM.notesContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        });
+    }
+    
+    // Mobile Menu Toggle
+    if (DOM.mobileMenuToggle && DOM.navLinksContainer) {
+        DOM.mobileMenuToggle.addEventListener('click', () => {
+            DOM.navLinksContainer.classList.toggle('mobile-open');
         });
     }
     

@@ -9,42 +9,37 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="glass-header">
+    <nav class="glass-header sleek-dark">
         <div class="header-left">
             <div class="logo">
-                <i class="fa-solid fa-compass"></i>
-                <span class="logo-text">Notify</span>
-            </div>
-            <div class="nav-pills">
-                <a href="#" class="nav-pill">Home</a>
-                <a href="#" class="nav-pill">Notes</a>
-                <a href="#" class="nav-pill active">Dashboard</a>
-                <a href="#" class="nav-pill">About</a>
+                <span class="logo-text">NOTIFY</span>
             </div>
         </div>
 
         <div class="header-center">
-            <h1 class="page-title">Workspace</h1>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Why Notify?</a>
+                <a href="#" class="nav-link">Dashboard</a>
+                <a href="#" class="nav-link">Support</a>
+                <a href="#" class="nav-link">Become a partner</a>
+                <a href="#" class="nav-link">Blog</a>
+            </div>
         </div>
 
         <div class="header-right">
-            <div class="search-wrap">
-                <i class="fa-solid fa-search"></i>
-                <input type="text" id="search-input" placeholder="Search...">
-            </div>
-            <div class="util-icons">
-                <button id="theme-toggle" class="util-btn" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
-                <div class="dropdown-wrapper">
-                    <button class="util-btn" title="More Options"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                    <div class="dropdown-menu">
-                        <button id="import-btn"><i class="fa-solid fa-file-import"></i> Import</button>
-                        <input type="file" id="import-file" accept=".json" style="display: none;">
-                        <button id="export-btn"><i class="fa-solid fa-file-export"></i> Export</button>
-                    </div>
+            <button class="circle-btn">EN</button>
+            <a href="#" class="text-link">Login</a>
+            <div class="dropdown-wrapper">
+                <button class="circle-btn" title="More Options"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                <div class="dropdown-menu">
+                    <button id="import-btn"><i class="fa-solid fa-file-import"></i> Import</button>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                    <button id="export-btn"><i class="fa-solid fa-file-export"></i> Export</button>
+                    <button id="theme-toggle"><i class="fa-solid fa-moon"></i> Theme</button>
                 </div>
             </div>
-            <button id="new-note-btn" class="cta-btn">
-                <i class="fa-solid fa-plus"></i> New Note
+            <button id="new-note-btn" class="sleek-pill-btn">
+                Add Note
             </button>
             <button class="mobile-menu-toggle">
                 <i class="fa-solid fa-bars"></i>

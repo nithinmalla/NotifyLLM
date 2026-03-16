@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="glass-header">
+        <div class="header-left">
+            <div class="logo">
+                <i class="fa-solid fa-compass"></i>
+                <span class="logo-text">Progress</span>
+            </div>
+            <div class="nav-pills">
+                <a href="#" class="nav-pill">Home</a>
+                <a href="#" class="nav-pill">Notes</a>
+                <a href="#" class="nav-pill active">Dashboard</a>
+                <a href="#" class="nav-pill">About</a>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <h1 class="page-title">Workspace</h1>
+        </div>
+
+        <div class="header-right">
+            <div class="search-wrap">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search...">
+            </div>
+            <div class="util-icons">
+                <button id="theme-toggle" class="util-btn" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+                <div class="dropdown-wrapper">
+                    <button class="util-btn" title="More Options"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                    <div class="dropdown-menu">
+                        <button id="import-btn"><i class="fa-solid fa-file-import"></i> Import</button>
+                        <input type="file" id="import-file" accept=".json" style="display: none;">
+                        <button id="export-btn"><i class="fa-solid fa-file-export"></i> Export</button>
+                    </div>
+                </div>
+            </div>
+            <button id="new-note-btn" class="cta-btn">
+                <i class="fa-solid fa-plus"></i> New Note
+            </button>
+            <button class="mobile-menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <button id="prev-btn" class="slider-nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <div id="notes-container" class="slider-container">
+            <!-- Notes will be dynamically inserted here -->
+        </div>
+        <button id="next-btn" class="slider-nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
+    </main>
+
+    <!-- Template for a note card (used by JS) -->
+    <template id="note-template">
+        <div class="note-card">
+            <div class="note-header">
+                <input type="text" class="note-title" placeholder="Task Name (e.g. Roblox Game)">
+            </div>
+            
+            <div class="note-section status-chips-section">
+                <div class="status-chips">
+                    <button class="status-chip" data-status="To-do"><i class="fa-solid fa-list-ul"></i> To-do</button>
+                    <button class="status-chip" data-status="In Progress"><i class="fa-solid fa-spinner"></i> In Progress</button>
+                    <button class="status-chip" data-status="In Review"><i class="fa-solid fa-eye"></i> In Review</button>
+                    <button class="status-chip" data-status="Design Review"><i class="fa-solid fa-pen-ruler"></i> Design Review</button>
+                    <button class="status-chip" data-status="Rework"><i class="fa-solid fa-rotate-left"></i> Rework</button>
+                    <button class="status-chip" data-status="Done"><i class="fa-solid fa-check"></i> Done</button>
+                    <button class="status-chip" data-status="Not Started"><i class="fa-solid fa-circle"></i> Not Started</button>
+                    <button class="status-chip" data-status="Blocked"><i class="fa-solid fa-ban"></i> Blocked</button>
+                    <button class="status-chip" data-status="On Hold"><i class="fa-solid fa-pause"></i> On Hold</button>
+                    <button class="status-chip" data-status="Archived"><i class="fa-solid fa-box-archive"></i> Archived</button>
+                </div>
+            </div>
+            
+            <div class="note-section">
+                <label>Progress Done</label>
+                <textarea class="progress-input" placeholder="What have you accomplished?"></textarea>
+            </div>
+            
+            <div class="note-section">
+                <label>Next Step</label>
+                <textarea class="next-step-input" placeholder="What is the very next thing to do?"></textarea>
+            </div>
+            
+            <div class="note-section progress-bar-section">
+                <div class="progress-header">
+                    <label>Progress</label>
+                    <span class="progress-text">0%</span>
+                </div>
+                <input type="range" class="progress-slider" min="0" max="100" value="0" step="5">
+            </div>
+
+            <div class="note-footer">
+                <span class="timestamp">Last updated: Just now</span>
+                <div class="note-actions">
+                    <span class="save-indicator"><i class="fa-solid fa-check"></i> Saved</span>
+                    <button class="edit-btn secondary-btn-small" title="Edit Note">Edit</button>
+                    <button class="save-btn primary-btn-small" title="Save Note">Save</button>
+                    <button class="delete-btn icon-btn-danger" title="Delete Note">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>

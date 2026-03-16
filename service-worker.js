@@ -1,4 +1,4 @@
-const CACHE_NAME = 'notify-v1';
+const CACHE_NAME = 'notify-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

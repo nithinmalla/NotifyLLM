@@ -379,6 +379,7 @@ body.dark-theme .icon-btn-danger:hover {
 
 /* Arrow Navigation */
 .slider-nav-btn {
+    display: none; /* Hidden — swipe/drag is enough */
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

@@ -2,7 +2,7 @@
   "name": "Notify",
   "short_name": "Notify",
   "description": "A modern progress tracking dashboard",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#030308",
   "theme_color": "#030308",

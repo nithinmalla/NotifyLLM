@@ -231,8 +231,6 @@ function renderNote(note) {
     const progressText = card.querySelector('.progress-text');
     const timestampSpan = card.querySelector('.timestamp');
     const deleteBtn = card.querySelector('.delete-btn');
-    const editBtn = card.querySelector('.edit-btn');
-    const saveBtn = card.querySelector('.save-btn');
 
     // Populate fields
     titleInput.value = note.title;
@@ -286,11 +284,6 @@ function renderNote(note) {
 
     // Action Buttons
     deleteBtn.addEventListener('click', () => deleteNote(note.id, card));
-    editBtn.addEventListener('click', () => titleInput.focus());
-    saveBtn.addEventListener('click', () => {
-        saveNotes();
-        flashSaveIndicator(card);
-    });
 
     DOM.notesContainer.appendChild(card);
     return card;

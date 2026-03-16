@@ -72,7 +72,9 @@ function createNote() {
     notes.unshift(newNote);
     saveNotes();
     
-    DOM.searchInput.value = ''; // Clear search
+    if (DOM.searchInput) {
+        DOM.searchInput.value = ''; // Clear search
+    }
     renderNotes();
     
     // Focus the title of the new note
@@ -192,8 +194,8 @@ function initCenterObserver() {
 // Rendering
 function renderNotes() {
     DOM.notesContainer.innerHTML = '';
-    const searchTerm = DOM.searchInput.value.toLowerCase();
-
+    
+    const searchTerm = DOM.searchInput ? DOM.searchInput.value.toLowerCase() : '';
     const filteredNotes = notes.filter(note => {
         return note.title.toLowerCase().includes(searchTerm) || 
                note.progress.toLowerCase().includes(searchTerm) ||
@@ -323,12 +325,12 @@ function loadTheme() {
     const isDark = localStorage.getItem('dark_theme') === 'true';
     if (isDark) {
         document.body.classList.add('dark-theme');
-        DOM.themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        if (DOM.themeToggle) DOM.themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
     } else {
         // System preference default maybe?
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && localStorage.getItem('dark_theme') === null) {
             document.body.classList.add('dark-theme');
-            DOM.themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            if (DOM.themeToggle) DOM.themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
         }
     }
 }
@@ -338,10 +340,12 @@ function toggleTheme() {
     const isDark = document.body.classList.contains('dark-theme');
     localStorage.setItem('dark_theme', isDark);
     
-    if (isDark) {
-        DOM.themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
-    } else {
-        DOM.themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    if (DOM.themeToggle) {
+        if (isDark) {
+            DOM.themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else {
+            DOM.themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        }
     }
 }
 
@@ -393,15 +397,36 @@ function importJSON(event) {
 }
 
 function setupEventListeners() {
-    DOM.newNoteBtn.addEventListener('click', createNote);
-    DOM.searchInput.addEventListener('input', triggerSearch);
-    DOM.themeToggle.addEventListener('click', toggleTheme);
-    DOM.exportBtn.addEventListener('click', exportJSON);
+    if (DOM.newNoteBtn) {
+        DOM.newNoteBtn.addEventListener('click', () => {
+            createNote();
+            DOM.notesContainer.scrollTo({
+                left: DOM.notesContainer.scrollWidth,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    if (DOM.searchInput) {
+        DOM.searchInput.addEventListener('input', renderNotes);
+    }
     
-    DOM.importBtn.addEventListener('click', () => {
-        DOM.importFile.click();
-    });
-    DOM.importFile.addEventListener('change', importJSON);
+    if (DOM.themeToggle) {
+        DOM.themeToggle.addEventListener('click', toggleTheme);
+    }
+    
+    if (DOM.exportBtn) {
+        DOM.exportBtn.addEventListener('click', exportJSON);
+    }
+    
+    if (DOM.importBtn) {
+        DOM.importBtn.addEventListener('click', () => {
+            DOM.importFile.click();
+        });
+    }
+    if (DOM.importFile) {
+        DOM.importFile.addEventListener('change', importJSON);
+    }
     
     // Slider Navigation Arrows
     if(DOM.prevBtn) {

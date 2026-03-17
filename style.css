@@ -748,11 +748,6 @@ body.dark-theme .status-chip.active {
         display: block;
     }
     
-    /* Modify slek-pill-btn for mobile */
-    .sleek-pill-btn {
-        padding: 0.5rem;
-        border-radius: 50%;
-    }
     
     .text-link {
         display: none; /* Hide login text link on mobile */
